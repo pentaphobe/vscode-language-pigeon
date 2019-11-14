@@ -1,36 +1,25 @@
-# go-pigeon README
+# go-pigeon
 
-This is the README for your extension "go-pigeon". After writing up a brief description, we recommend including the following sections.
+Provides language support for the [pigeon](https://github.com/mna/pigeon) PEG parser for Go (golang)
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- [x] Embedded highlighting for Go actions
+- [x] Basic highlighting of:
+  - [x] rule names
+  - [x] String and character literals
+  - [x] Tagged variables
+- [ ] full rule expression highlighting
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+![screenshot](images/screenshot.png)
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Rules are not fully parsed yet
+- Go actions seem to lack some full highlighting
+  - May be because they ultimately are functions lacking function scope
 
+<!--
 ## Release Notes
 
 Users appreciate release notes as you update your extension.
@@ -63,3 +52,5 @@ Added features X, Y, and Z.
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
+
+-->
