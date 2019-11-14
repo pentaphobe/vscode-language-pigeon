@@ -1,0 +1,28 @@
+{
+    "name": "go-pigeon",
+    "displayName": "go-pigeon",
+    "description": "Language support for the pigeon PEG parser generator",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.40.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "pigeon",
+            "aliases": ["pigeon", "pigeon"],
+            "extensions": [".peg"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "pigeon",
+            "scopeName": "source.peg",
+            "path": "./syntaxes/pigeon.tmLanguage.json",
+            "embeddedLanguages": {
+                "meta.embedded.block.go": "go"
+            }
+        }]
+    }
+}

@@ -1,0 +1,163 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "pigeon",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#characters"
+		},
+		{
+			"include": "#paren-expression"
+		},
+		{
+			"include": "#go-action"
+		},
+		{
+			"include": "#rule"
+		}
+	],
+	"repository": {
+
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.pigeon",
+				"match": "<\\-"
+			}, {
+				"name": "keyword.pigeon",
+				"match": "\\*|\\+|\\?|\\:"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.pigeon",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.pigeon",
+					"match": "\\\\."
+				}
+			]
+		},
+		"characters": {
+			"name": "string.quoted.single.pigeon",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.pigeon",
+					"match": "\\\\."
+				}
+			]
+		},
+		"paren-expression": {
+			"name": "expression.group.pigeon",
+			"begin": "\\(",
+			"end": "\\)",
+			"beginCaptures": {
+				"0": { "name": "punctuation.paren.open.pigeon" }
+			},
+			"endCaptures": {
+				"0": { "name": "punctuation.paren.close.pigeon" }
+			},
+			"patterns": [{ "include": "#expression" }]
+		},
+		"character-regex": {
+			"name": "meta.embedded.block.regex",
+			"begin": "\\[",
+			"end": "\\]",
+			"patterns": [
+				{
+					"include": "source.regex"
+				}
+			]
+		},
+		"tagged": {
+			"name": "meta.tag.pigeon",
+			"match": "(\\b\\w+\\b)(\\:)",
+			"captures": {
+				"1": {
+					"name": "variable.other.pigeon"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#keywords"
+						}
+					]
+				}
+			}
+		},
+		"tagged-var": {
+			"name": "meta.tag.pigeon",
+			"match": "\\:(\\b\\w+\\b)",
+			"captures": {
+				"1": {
+					"name": "support.type"
+				}
+			}
+		},
+		"go-action": {
+			"name": "meta.embedded.block.go",
+			"begin": "\\{",
+			"end": "\\}",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.begin.bracket.curly.pigeon" }
+			},
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.end.bracket.curly.pigeon" }
+			},
+			"patterns": [
+				{
+					"include": "source.go"
+				}
+			]
+		},
+		"rule": {
+			"name": "variable.pigeon",
+			"match": "^(\\b\\w+\\b)\\s*(<\\-)(.+\\{?)$",
+			"captures": {
+				"1": {
+					"name": "support.type"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#keywords"
+						}
+					]
+				},
+				"3": {
+					"patterns": [
+						{
+							"include": "#keywords"
+						},
+						{
+							"include": "#paren-expression"
+						},
+						{
+							"include": "#strings"
+						},
+						{
+							"include": "#characters"
+						},
+						{
+							"include": "#tagged-var"
+						},
+						{
+							"include": "#tagged"
+						},
+						{
+							"include": "#go-action"
+						}
+					]
+				}
+			}
+		}
+	},
+	"scopeName": "source.peg"
+}
