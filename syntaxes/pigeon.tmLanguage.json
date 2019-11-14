@@ -29,7 +29,7 @@
 				"match": "<\\-"
 			}, {
 				"name": "keyword.pigeon",
-				"match": "\\*|\\+|\\?|\\:"
+				"match": "\\*|\\+|\\?|\\:|\\/"
 			}]
 		},
 		"strings": {
@@ -76,12 +76,21 @@
 				}
 			]
 		},
+		"variable": {
+			"name": "support.type.pigeon",
+			"match": "(\\b\\w+\\b)",
+			"captures": {
+				"1": {
+					"name": "support.type"
+				}
+			}
+		},
 		"tagged": {
 			"name": "meta.tag.pigeon",
 			"match": "(\\b\\w+\\b)(\\:)",
 			"captures": {
 				"1": {
-					"name": "variable.other.pigeon"
+					"name": "variable.parameter.pigeon"
 				},
 				"2": {
 					"patterns": [
@@ -89,15 +98,6 @@
 							"include": "#keywords"
 						}
 					]
-				}
-			}
-		},
-		"tagged-var": {
-			"name": "meta.tag.pigeon",
-			"match": "\\:(\\b\\w+\\b)",
-			"captures": {
-				"1": {
-					"name": "support.type"
 				}
 			}
 		},
